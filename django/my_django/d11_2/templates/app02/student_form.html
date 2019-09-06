@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>student_form</title>
+</head>
+<body>
+<h1>学生列表</h1>
+<form method="post" action="">
+    {% csrf_token %}
+    <ul>
+        {% for row in stu_list %}
+            <li>{{ row.id }}|{{ row.name }}|{{ row.age }}<a href="/edit_student/{{ row.id }}/">编辑</a></li>
+        {% endfor %}
+    </ul>
+</form>
+{% for s in stu_obj %}
+    <p>{{ s.id }}|{{ s.name }}</p>
+{% endfor %}
+
+</body>
+</html>

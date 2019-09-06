@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑出版社</title>
+</head>
+<body>
+<p>编辑出版社</p>
+<form action="{% url 'app01:edit_publisher1' %}" method="post" autocomplete="off" novalidate>
+    {% csrf_token %}
+    <input type="text" name="id" value="{{ id }}" style="display: none">
+    <input type="text" name="name" value="{{ name }}">
+    <input type="submit">
+</form>
+
+</body>
+</html>

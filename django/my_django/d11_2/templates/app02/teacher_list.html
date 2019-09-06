@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load my_filter %}
+{% block content %}
+    <h3>教师信息页面</h3>
+    <a href="{% url 'app02:add_teacher' %}">
+        <button type="button" class="btn btn-lg btn-success" aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加
+        </button>
+    </a>
+    <table class="table table-bordered text-center table-hover">
+        <thead>
+        <tr class="info">
+            <td>序列号</td>
+            <td>id</td>
+            <td>教师姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>班级</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for teacher in teacher_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ teacher.id }}</td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.age }}</td>
+                <td>{{ teacher.sex|my_sex }}</td>
+                <td>
+                    {% for i in teacher.myclass_set.all %}
+                        {% if forloop.last %}
+                            {{ i.name }}
+                        {% else %}
+                            {{ i.name }} |
+
+                        {% endif %}
+                    {% endfor %}
+
+                </td>
+                <td>
+                    <a href="{% url 'app02:del_teacher' %}?id={{ teacher.id }}">
+                        <button type="button" class="btn btn-sm btn-danger" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                        </button>
+                    </a>
+                    |
+                    <a href="{% url 'app02:edit_teacher' %}?id={{ teacher.id }}">
+                        <button type="button" class="btn btn-sm btn-success" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

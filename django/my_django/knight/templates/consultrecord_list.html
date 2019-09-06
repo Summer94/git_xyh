@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block page-css %}
+    <style>
+        th {
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+{% endblock %}
+{% block page-base %}
+    <h2>客户沟通跟进页面</h2>
+    <form action="" method="get">
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-lg-3 pull-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." name="query">
+                    <span class="input-group-btn">
+        <button class="btn btn-info" type="submit">搜索</button>
+      </span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="input-group">
+                    <label for="action"></label>
+                    <select name="action" id="action" class="form-control">
+                        <option value="">-------</option>
+                        <option value="to_public">添加到公有客户列中</option>
+                        <option value="to_private">添加到自己客户列中</option>
+                    </select>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-info right">提交
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 pull-right">
+                <a href="{% url 'add_consult_record' %}" type="button" class="btn btn-success btn-md"
+                   style="padding-right: 22px">
+                    <span class="glyphicon glyphicon-plus"></span> 添加</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover text-center table-bordered">
+                        <thead>
+                        <tr class="info">
+                            <td style="width: 40px;" class="text-center'">选择</td>
+                            <th style="width: 20px">#</th>
+                            <th style="width: 80px">客户qq</th>
+                            <th style="width: 80px">客户姓名</th>
+                            <th style="width: 80px">跟进内容</th>
+                            <th style="width: 60px">跟进状态</th>
+                            <th style="width: 80px">跟进人</th>
+                            <th style="width: 90px">跟进日期</th>
+                            <th style="width: 20px!important;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for record in consult_record %}
+                            <tr>
+                                <td style="width: 20px;"><input type="checkbox" name="cid" value="{{ customer.id }}">
+                                </td>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ record.customer.qq }}</td>
+                                <td>{{ record.customer.name }}</td>
+                                <td>{{ record.note }}</td>
+                                <td>{{ record.get_status_display }}</td>
+                                <td>{{ record.consultant.name }}</td>
+                                <td>{{ record.date }}</td>
+                                <td><a href="{% url 'edit_consult_record'  record.id %}" class="btn btn-success"><span
+                                        class="glyphicon glyphicon-pencil"></span> 编辑</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {{ page_html|safe }}
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}
+

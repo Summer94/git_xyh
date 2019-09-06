@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name"></label>
+    <input type="text" name="name" id="name">
+{#    <input type="file" name="file1">#}
+{#    <input type="file" name="file2">#}
+{#    <input type="file" name="file3">#}
+    <input type="file" multiple name="xx">
+    <input type="submit">
+</form>
+
+</body>
+</html>

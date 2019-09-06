@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>re_age</title>
+</head>
+<body>
+<form action="{% url 're_age' %}" method="post" novalidate>
+    {% csrf_token %}
+    <p>
+        <label>出生日期:
+            <input type="text" name="age" placeholder="如2010-10-11" value="{{ age }}" id="age">
+        </label>
+    </p>
+    <p>{{ s }}</p>
+    <p>
+        <span>{{ t }}</span>
+    </p>
+    <input type="submit" value="提交" id="btn">
+</form>
+
+</body>
+<script src="/static/jquery.js"></script>
+<script>
+    $("#age").on("focus",function () {
+        $(this).val("").parent().parent().next().text("").next().children().text("");
+    })
+
+</script>
+</html>

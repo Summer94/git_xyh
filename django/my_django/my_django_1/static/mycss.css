@@ -1,0 +1,64 @@
+.my-table {
+    background-color: #fff;
+    border: none;
+    position: relative;
+    padding: 15px 15px 0;
+    margin: 0 -15px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.my-table-toolbar {
+    padding: 15px 15px 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.my-table table {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.my-table table th{
+    text-align: center;
+}
+
+.foot-ul {
+    padding-right: 15px;
+}
+
+.nav-sidebar {
+    margin-bottom: 0 !important;
+}
+
+.menu {
+    height: 45px;
+    margin-left: -20px;
+    margin-right: -20px;
+    background-color: #35363a;
+    border-bottom: 1px solid #27272B;
+    text-align: left;
+    line-height: 45px;
+
+}
+
+.menu > a {
+    padding-left: 20px;
+    color: #eeeeee;
+}
+
+.menu:hover {
+    border-left: 2px red solid;
+
+}
+
+
+
+
+
+

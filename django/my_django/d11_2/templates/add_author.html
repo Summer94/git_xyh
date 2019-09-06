@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>add_author</title>
+</head>
+<body>
+
+<form action="{% url 'app01:add_author' %}" method="post" autocomplete="off" novalidate>
+    {% csrf_token %}
+    <p>
+        <label>姓名:
+            <input type="text" placeholder="请输入作者姓名" name="name">
+        </label>
+    </p>
+    <p>
+        <label>年龄:
+            <input type="number" name="age">
+        </label>
+    </p>
+    <p>作品
+        <label for="book"></label>
+        <select name="book" id="book" multiple>
+            {% for book in book_list %}
+                <option value="{{ book.id }}">{{ book.title }}</option>
+            {% endfor %}
+
+        </select>
+    </p>
+    <input type="submit" value="提交">
+
+</form>
+
+</body>
+</html>

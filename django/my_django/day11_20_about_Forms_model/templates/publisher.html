@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>publisher</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <style>
+        table {
+            margin-top: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr class="info">
+                    <th>#</th>
+                    <th>id</th>
+                    <th>出版社名称</th>
+                    <th>出版社地址</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for publisher in publisher_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ publisher.id }}</td>
+                        <td>{{ publisher.name }}</td>
+                        <td>{{ publisher.addr }}</td>
+                        <td>
+                            <a href="{% url 'edit_pub' %}?id={{ publisher.id }}">
+                                <button class="btn btn-info">编辑</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            {{ page_html|safe }}
+            <form action="" method="get">
+                <input type="number" name="page">
+                <input type="submit" value="跳转">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="{% static 'jquery.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+</html>

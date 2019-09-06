@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block page-css %}
+    <style>
+        th {
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+{% endblock %}
+{% block page-base %}
+    <h2>学习记录表</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ formset_obj.management_form }}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover text-center table-bordered">
+                        <thead>
+                        <tr class="info">
+                            <th style="width: 20px">#</th>
+                            <th style="width: 80px">姓名</th>
+                            <th style="width: 80px">考勤</th>
+                            <th style="width: 80px">成绩</th>
+                            <th style="width: 80px">作业</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for form_obj in formset_obj %}
+                            <tr>
+                                {{ form_obj.id }}
+                                <td>{{ forloop.counter }}</td>
+                                <td style="display: none">{{ form_obj.student }}</td>
+                                <td>{{ form_obj.instance.student.name }}</td>
+                                <td>{{ form_obj.attendance }}</td>
+                                <td>{{ form_obj.score }}</td>
+                                <td>{{ form_obj.homework_note }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {{ page_html|safe }}
+                </div>
+                <button class="btn btn-success" type="submit">保存</button>
+            </div>
+
+        </div>
+
+    </form>
+
+{% endblock %}
+

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        /*左侧菜单栏*/
+        .left-mune {
+            position: fixed;
+            width: 210px;
+            left: 0;
+            top: 50px;
+            bottom: 0;
+            background-color: #0C0C0C;
+        }
+
+        /* 超链接*/
+        .left-mune .book-info, .cd1 {
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid white;
+            line-height: 50px;
+            color: #e0e0e0;
+        }
+
+        /* 菜单信息*/
+        .left-mune .cd1 {
+            background-color: dodgerblue;
+            padding-left: 15px;
+        }
+
+        .left-mune .cd1:hover {
+            cursor: pointer;
+            color: white;
+        }
+
+        .left-mune .book-info a {
+            display: block;
+            width: 100%;
+            height: 50px;
+            padding-left: 15px;
+            color: #9d9d9d;
+            text-decoration: none;
+        }
+
+        .left-mune .book-info:hover a {
+            border-left: 3px solid red;
+            color: white;
+            text-align: center;
+        }
+
+        .blue {
+            background-color: #5cb85c;
+            color: white !important;
+        }
+
+        .myhide {
+            display: none;
+        }
+    </style>
+    {% block css %}
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="border-radius: 0;margin-bottom: 0">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color: white">后台管理</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">夏雨豪是帅逼 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">说的对</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">夏雨豪真帅</a></li>
+                        <li><a href="#">同意</a></li>
+                        <li><a href="#">必须同意</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">超级无敌同意</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">超级无敌螺旋升天同意</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-2">
+            <div class="left-mune">
+                <div class="item">
+                    <div class="cd1">书籍-出版社-作者信息</div>
+                    <div class="book-info">
+                        <a href="{% url 'app01:book_list' %}" class="{% if page == "book" %}blue{% endif %}">书籍信息</a>
+                    </div>
+                    <div class="book-info">
+                        <a href="{% url 'app01:author_list' %}"
+                           class="{% if page == "author" %}blue{% endif %}">作者信息</a>
+                    </div>
+                    <div class="book-info">
+                        <a href="{% url 'app01:publisher_list' %}" class="{% if page == "publisher" %}blue{% endif %}">出版社信息</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="cd1">班级-学生-教师</div>
+                    <div class="book-info">
+                        <a href="{% url 'app02:student_list' %}" class="{% if page == "student" %}blue{% endif %}">学生信息</a>
+                    </div>
+                    <div class="book-info ">
+                        <a href="{% url 'app02:teacher_list' %}" class="{% if page == "teacher" %}blue{% endif %}">教师信息</a>
+                    </div>
+                    <div class="book-info ">
+                        <a href="{% url 'app02:class_list' %}" class="{% if page == "class" %}blue{% endif %}">班级信息</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-10 content-right">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">当前页面</h3>
+                </div>
+                <div class="panel-body">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+{% load static %}
+<script src="{% static 'jquery.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+<script>
+    $(".item .cd1").on("click", function () {
+        $(this).siblings().slideToggle().parent().siblings().find(".book-info").slideUp()
+    });
+    $(".book-info").find(".blue").parent().siblings().removeClass("myhide").parent().siblings().find(".book-info").addClass("myhide")
+</script>
+{% block js %}
+{% endblock %}
+
+</html>

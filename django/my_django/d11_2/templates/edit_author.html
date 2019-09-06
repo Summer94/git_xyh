@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_author</title>
+    <style>
+        form {
+            margin-top: 200px;
+        }
+    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+</head>
+<body style="background-color: #101010;color: white">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form action="{% url 'app01:edit_author' %}?id={{ author.id }} " method="post" autocomplete="off"
+                  novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" name="name" value="{{ author.name }}" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="age">年龄</label>
+                    <input type="number" name="age" value="{{ author.age }}" class="form-control" id="age">
+                </div>
+                <div class="form-group">
+                    <label for="book">书籍</label>
+                    <select class="form-control" name="book" id="book" multiple>
+                        {% for book in book_list %}
+                            {% if book in author.book.all %}
+                                <option selected value="{{ book.id }}">{{ book.title }}</option>
+                            {% else %}
+                                <option value="{{ book.id }}">{{ book.title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">添加</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'jquery.js' %}"></script>
+</body>
+</html>

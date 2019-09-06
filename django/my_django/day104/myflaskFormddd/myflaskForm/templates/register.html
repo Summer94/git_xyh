@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<form action="" method="post" novalidate >
+    {% for filed in form_obj %}
+        <p>{{filed.label}} {{filed}} {{filed.errors[0]}}</p>
+    {% endfor %}
+    <input type="submit" value="注册">
+
+</form>
+
+</body>
+</html>

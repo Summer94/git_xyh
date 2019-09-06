@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_author</title>
+</head>
+<body>
+<form action="{% url 'app01:edit_author' %}?id={{ author.id }} " method="post" autocomplete="off" novalidate>
+    {% csrf_token %}
+    <p>
+        <label>姓名:
+            <input type="text" name="name" value="{{ author.name }}">
+        </label>
+    </p>
+    <p>
+        <label>年龄:
+            <input type="number" name="age" value="{{ author.age }}">
+        </label>
+    </p>
+    <p>作品
+        <select name="book" id="book" multiple>
+            {% for book in book_list %}
+                {% if book in author.book.all %}
+                    <option selected value="{{ book.id }}">{{ book.title }}</option>
+                {% else %}
+                    <option value="{{ book.id }}">{{ book.title }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </p>
+    <input type="submit" value="提交">
+</form>
+
+</body>
+</html>

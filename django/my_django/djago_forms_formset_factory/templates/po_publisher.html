@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    <div class="form-group">
+        {% for form in form_obj %}
+            <label for="{{ form.id_for_label }}">{{ form.label }}</label>
+            {{ form }}
+            <span>{{ form.errors.0 }}</span>
+        {% endfor %}
+        <button class="btn btn-success" type="submit">提交</button>
+
+
+    </div>
+</form>
+
+</body>
+</html>

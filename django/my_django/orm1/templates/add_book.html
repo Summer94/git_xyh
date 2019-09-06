@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>add_book</title>
+</head>
+<body>
+<p>添加书籍名称</p>
+<form action="{% url 'app01:add_book' %}">
+    <input type="text" name="book_name" value="请选择书籍名">
+    <input type="submit" value="提交">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+{% load my_filter %}
+
+<p>{{ xyh }}</p>
+<p>{{ xyh|default:"hahahha"}}</p>
+<p>{{ xyh|dsb }}</p>
+<hr>
+<p>{{ list1.0 }}</p>
+<p>{{ list1.1 }}</p>
+<p>{{ list1.2 }}</p>
+<hr>
+<p>{{ l2.0.name }}</p>
+<p>{{ l2.0.age }}</p>
+<p>{{ l2.0.dream }}</p>
+<hr>
+<p>{{ d.name }}</p>
+<p>{{ d.age }}</p>
+
+</body>
+</html>

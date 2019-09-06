@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="52e6a8c9-5016-4839-9233-5dd71028c87a" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Mysqlalchemy103$manage.coverage" NAME="manage Coverage Results" MODIFIED="1546437817518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flaskDemo/flaskBlue" />
+    <SUITE FILE_PATH="coverage/Mysqlalchemy103$manage__1_.coverage" NAME="manage (1) Coverage Results" MODIFIED="1546503223717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myflaskForm" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="db1: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="68959370">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="authdemo_user" value="1" />
+          <entry key="html" value="1" />
+          <entry key="mako" value="1" />
+          <entry key="py" value="54" />
+          <entry key="sql" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Database Element" value="1" />
+          <entry key="HTML" value="1" />
+          <entry key="Mako" value="1" />
+          <entry key="Python" value="54" />
+          <entry key="Scratch" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="64" />
+          <entry key="py" value="3549" />
+          <entry key="txt" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="64" />
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Python" value="3549" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myflaskForm/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+              <folding>
+                <element signature="e#117#155#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myflaskForm/myflaskForm/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-665">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding>
+                <element signature="e#117#143#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/flaskDemo/test.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flask-blue/flask-blue/views/user.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flask-blue/settings.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flask-blue/flask-blue/__init__.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flask-blue/manage.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/models.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flaskBlue/settings.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/templates/upload.html" />
+        <option value="$PROJECT_DIR$/flaskDemo/flaskBlue/manage.py" />
+        <option value="$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/views/user.py" />
+        <option value="$PROJECT_DIR$/myflaskForm/settings.py" />
+        <option value="$PROJECT_DIR$/myflaskForm/myflaskForm/views/user.py" />
+        <option value="$PROJECT_DIR$/myflaskForm/myflaskForm/__init__.py" />
+        <option value="$PROJECT_DIR$/myflaskForm/manage.py" />
+        <option value="$PROJECT_DIR$/myflaskForm/myflaskForm/models.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Mysqlalchemy103" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mysqlalchemy103" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mysqlalchemy103" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mysqlalchemy103" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskDemo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mysqlalchemy103" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mysqlalchemy103" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskBlue" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.manage (1)">
+    <configuration name="manage (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Mysqlalchemy103" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myflaskForm" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myflaskForm/manage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Mysqlalchemy103" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flaskDemo/flaskBlue" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flaskDemo/flaskBlue/manage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.manage" />
+      <item itemvalue="Python.manage (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.manage (1)" />
+        <item itemvalue="Python.manage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52e6a8c9-5016-4839-9233-5dd71028c87a" name="Default Changelist" comment="" />
+      <created>1546417183664</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1546417183664</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24877751" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" weight="0.32977587" />
+      <window_info anchor="bottom" id="Database Changes" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.32977587" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="4" weight="0.32977587" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.32977587" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.32977587" />
+      <window_info anchor="right" id="Database" order="0" weight="0.3294621" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="SciView" order="2" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/werkzeug/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-608">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#493#521#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/flask/globals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/werkzeug/local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="116" column="8" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
+          <folding>
+            <element signature="e#2533#3303#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/1496456915/itertools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/flask/ctx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-686">
+          <caret line="278" column="8" selection-start-line="278" selection-start-column="8" selection-end-line="278" selection-end-column="8" />
+          <folding>
+            <element signature="e#7649#9169#1" />
+            <element signature="e#10592#11093#0" />
+            <element signature="e#11132#11474#0" />
+            <element signature="e#11568#11636#0" />
+            <element signature="e#12281#12346#0" />
+            <element signature="e#12488#12604#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="2203" column="26" lean-forward="true" selection-start-line="2203" selection-start-column="26" selection-end-line="2203" selection-end-column="26" />
+          <folding>
+            <element signature="e#24#218#1" />
+            <element signature="e#1568#1661#0" />
+            <element signature="e#1688#2497#0" />
+            <element signature="e#1688#1801#1" />
+            <element signature="e#1855#2454#0" />
+            <element signature="e#1910#2414#0" />
+            <element signature="e#1931#2413#0" />
+            <element signature="e#2538#7537#1" />
+            <element signature="e#7543#7618#0" />
+            <element signature="e#7681#7733#0" />
+            <element signature="e#7823#7875#0" />
+            <element signature="e#7954#8014#0" />
+            <element signature="e#8641#8708#0" />
+            <element signature="e#9006#9075#0" />
+            <element signature="e#9591#9658#0" />
+            <element signature="e#9988#10054#0" />
+            <element signature="e#10279#10348#0" />
+            <element signature="e#10779#10851#0" />
+            <element signature="e#11308#11374#0" />
+            <element signature="e#11738#11818#0" />
+            <element signature="e#11897#11977#0" />
+            <element signature="e#12302#13909#0" />
+            <element signature="e#13916#13981#0" />
+            <element signature="e#14123#14187#0" />
+            <element signature="e#14258#14319#0" />
+            <element signature="e#14573#14632#0" />
+            <element signature="e#14804#14876#0" />
+            <element signature="e#15088#15157#0" />
+            <element signature="e#15240#15306#0" />
+            <element signature="e#16210#16366#0" />
+            <element signature="e#16244#16352#0" />
+            <element signature="e#16376#16417#0" />
+            <element signature="e#16514#16579#0" />
+            <element signature="e#16771#16835#0" />
+            <element signature="e#17080#17150#0" />
+            <element signature="e#17708#17776#0" />
+            <element signature="e#18124#18190#0" />
+            <element signature="e#18490#18556#0" />
+            <element signature="e#18781#18848#0" />
+            <element signature="e#19197#19258#0" />
+            <element signature="e#19860#19927#0" />
+            <element signature="e#20206#20272#0" />
+            <element signature="e#20626#20695#0" />
+            <element signature="e#21302#21373#0" />
+            <element signature="e#21763#21826#0" />
+            <element signature="e#21836#21901#0" />
+            <element signature="e#22043#22110#0" />
+            <element signature="e#22347#22417#0" />
+            <element signature="e#23049#23118#0" />
+            <element signature="e#23909#23976#0" />
+            <element signature="e#24088#24157#0" />
+            <element signature="e#24499#24810#0" />
+            <element signature="e#24820#24885#0" />
+            <element signature="e#25267#25889#0" />
+            <element signature="e#25267#25624#1" />
+            <element signature="e#25680#25857#0" />
+            <element signature="e#25949#26272#0" />
+            <element signature="e#25949#26132#1" />
+            <element signature="e#26341#26674#0" />
+            <element signature="e#26341#26541#1" />
+            <element signature="e#26734#27558#0" />
+            <element signature="e#26734#27523#1" />
+            <element signature="e#27621#27720#0" />
+            <element signature="e#27777#27958#0" />
+            <element signature="e#27777#27919#1" />
+            <element signature="e#28020#28670#0" />
+            <element signature="e#28020#28382#1" />
+            <element signature="e#28719#29213#0" />
+            <element signature="e#28719#28998#1" />
+            <element signature="e#29282#29784#0" />
+            <element signature="e#29282#29714#1" />
+            <element signature="e#29836#30309#0" />
+            <element signature="e#29836#30207#1" />
+            <element signature="e#30368#30412#0" />
+            <element signature="e#30633#31885#0" />
+            <element signature="e#30633#31085#1" />
+            <element signature="e#31550#31602#0" />
+            <element signature="e#31937#32403#0" />
+            <element signature="e#31937#32359#1" />
+            <element signature="e#32462#32763#0" />
+            <element signature="e#32462#32640#1" />
+            <element signature="e#32821#33976#0" />
+            <element signature="e#32821#33358#1" />
+            <element signature="e#33497#33675#0" />
+            <element signature="e#33780#33843#0" />
+            <element signature="e#34020#34355#0" />
+            <element signature="e#34020#34211#1" />
+            <element signature="e#34361#34428#0" />
+            <element signature="e#34859#34886#0" />
+            <element signature="e#34929#35021#0" />
+            <element signature="e#35027#35094#0" />
+            <element signature="e#35834#40418#0" />
+            <element signature="e#35834#38682#1" />
+            <element signature="e#38691#38751#0" />
+            <element signature="e#38891#38997#0" />
+            <element signature="e#39052#39347#0" />
+            <element signature="e#39189#39255#0" />
+            <element signature="e#40162#40418#0" />
+            <element signature="e#40162#40225#0" />
+            <element signature="e#40483#42883#0" />
+            <element signature="e#40483#42684#1" />
+            <element signature="e#42934#43403#0" />
+            <element signature="e#42934#43241#1" />
+            <element signature="e#43450#44168#0" />
+            <element signature="e#43450#43916#1" />
+            <element signature="e#43972#44091#0" />
+            <element signature="e#44225#45055#0" />
+            <element signature="e#44225#44793#1" />
+            <element signature="e#44849#44968#0" />
+            <element signature="e#45098#45673#0" />
+            <element signature="e#45098#45415#1" />
+            <element signature="e#45471#45600#0" />
+            <element signature="e#45756#47315#0" />
+            <element signature="e#45756#46627#1" />
+            <element signature="e#46722#47092#0" />
+            <element signature="e#46793#46977#0" />
+            <element signature="e#47119#47252#0" />
+            <element signature="e#47356#47509#0" />
+            <element signature="e#47356#47466#1" />
+            <element signature="e#47665#51859#0" />
+            <element signature="e#47665#49858#1" />
+            <element signature="e#50042#50107#0" />
+            <element signature="e#50384#50529#0" />
+            <element signature="e#50400#50528#0" />
+            <element signature="e#50717#50779#0" />
+            <element signature="e#50893#50990#0" />
+            <element signature="e#51050#51243#0" />
+            <element signature="e#51095#51175#0" />
+            <element signature="e#51536#51859#0" />
+            <element signature="e#51660#51805#0" />
+            <element signature="e#51681#51793#0" />
+            <element signature="e#51907#53265#0" />
+            <element signature="e#51907#53080#1" />
+            <element signature="e#53119#53240#0" />
+            <element signature="e#53326#53685#0" />
+            <element signature="e#53326#53567#1" />
+            <element signature="e#53606#53660#0" />
+            <element signature="e#53765#54194#0" />
+            <element signature="e#54268#55494#0" />
+            <element signature="e#54268#55353#1" />
+            <element signature="e#55392#55469#0" />
+            <element signature="e#55581#55840#0" />
+            <element signature="e#55581#55775#1" />
+            <element signature="e#55933#56832#0" />
+            <element signature="e#55933#56052#1" />
+            <element signature="e#56145#56394#0" />
+            <element signature="e#56179#56354#0" />
+            <element signature="e#56524#56715#0" />
+            <element signature="e#56556#56675#0" />
+            <element signature="e#56901#57413#0" />
+            <element signature="e#56901#57290#1" />
+            <element signature="e#57329#57388#0" />
+            <element signature="e#57489#57778#0" />
+            <element signature="e#57489#57723#1" />
+            <element signature="e#57845#58567#0" />
+            <element signature="e#57845#58446#1" />
+            <element signature="e#58485#58542#0" />
+            <element signature="e#58641#58954#0" />
+            <element signature="e#58641#58901#1" />
+            <element signature="e#59023#59599#0" />
+            <element signature="e#59023#59476#1" />
+            <element signature="e#59515#59574#0" />
+            <element signature="e#59675#60013#0" />
+            <element signature="e#59675#59958#1" />
+            <element signature="e#60073#60559#0" />
+            <element signature="e#60073#60477#1" />
+            <element signature="e#60625#60938#0" />
+            <element signature="e#60625#60871#1" />
+            <element signature="e#60997#61457#0" />
+            <element signature="e#60997#61376#1" />
+            <element signature="e#61519#63034#0" />
+            <element signature="e#61519#62950#1" />
+            <element signature="e#63099#64198#0" />
+            <element signature="e#63099#64132#1" />
+            <element signature="e#64261#64389#0" />
+            <element signature="e#64458#64615#0" />
+            <element signature="e#64458#64550#1" />
+            <element signature="e#64683#65321#0" />
+            <element signature="e#64683#65236#1" />
+            <element signature="e#65379#65658#0" />
+            <element signature="e#65379#65575#1" />
+            <element signature="e#65706#66516#0" />
+            <element signature="e#65706#66008#1" />
+            <element signature="e#66111#66203#0" />
+            <element signature="e#66227#66516#0" />
+            <element signature="e#66410#66516#0" />
+            <element signature="e#66566#67050#0" />
+            <element signature="e#66566#66767#1" />
+            <element signature="e#66776#66844#0" />
+            <element signature="e#67098#68302#0" />
+            <element signature="e#67098#67865#1" />
+            <element signature="e#68352#70136#0" />
+            <element signature="e#68352#68945#1" />
+            <element signature="e#69033#69099#0" />
+            <element signature="e#70181#70570#1" />
+            <element signature="e#70792#71170#0" />
+            <element signature="e#70792#70852#0" />
+            <element signature="e#71417#71828#0" />
+            <element signature="e#71417#71692#1" />
+            <element signature="e#71758#71798#0" />
+            <element signature="e#71886#72507#0" />
+            <element signature="e#71886#72194#1" />
+            <element signature="e#72549#72994#1" />
+            <element signature="e#73168#73222#0" />
+            <element signature="e#73625#73823#1" />
+            <element signature="e#74239#75216#0" />
+            <element signature="e#74239#74798#1" />
+            <element signature="e#74866#74967#0" />
+            <element signature="e#75006#75192#0" />
+            <element signature="e#75089#75191#0" />
+            <element signature="e#75284#75511#1" />
+            <element signature="e#75619#75792#0" />
+            <element signature="e#75847#76591#0" />
+            <element signature="e#75847#76071#1" />
+            <element signature="e#76247#76505#0" />
+            <element signature="e#76643#76936#0" />
+            <element signature="e#76643#76915#1" />
+            <element signature="e#76979#81294#0" />
+            <element signature="e#76979#78622#1" />
+            <element signature="e#78734#79447#0" />
+            <element signature="e#78968#79114#0" />
+            <element signature="e#79198#79447#0" />
+            <element signature="e#79235#79429#0" />
+            <element signature="e#79520#79728#0" />
+            <element signature="e#79553#79714#0" />
+            <element signature="e#79860#80921#0" />
+            <element signature="e#79926#80215#0" />
+            <element signature="e#79926#79988#0" />
+            <element signature="e#80250#80921#0" />
+            <element signature="e#80250#80308#0" />
+            <element signature="e#80510#80921#0" />
+            <element signature="e#80557#80811#0" />
+            <element signature="e#81013#81159#0" />
+            <element signature="e#81347#82810#0" />
+            <element signature="e#81347#81907#1" />
+            <element signature="e#81952#82462#0" />
+            <element signature="e#81952#82010#0" />
+            <element signature="e#82471#82533#0" />
+            <element signature="e#82616#82810#0" />
+            <element signature="e#82873#83357#0" />
+            <element signature="e#82873#83093#1" />
+            <element signature="e#83191#83295#0" />
+            <element signature="e#83430#84167#0" />
+            <element signature="e#83625#83876#0" />
+            <element signature="e#83646#83748#0" />
+            <element signature="e#83801#83876#0" />
+            <element signature="e#83886#83952#0" />
+            <element signature="e#84211#84667#1" />
+            <element signature="e#85340#85888#1" />
+            <element signature="e#86560#87810#0" />
+            <element signature="e#86560#87384#1" />
+            <element signature="e#87873#88549#0" />
+            <element signature="e#87873#88348#1" />
+            <element signature="e#88586#89206#0" />
+            <element signature="e#88586#89174#1" />
+            <element signature="e#89256#89810#1" />
+            <element signature="e#89918#92157#0" />
+            <element signature="e#89918#91907#1" />
+            <element signature="e#92216#93184#1" />
+            <element signature="e#93797#94021#0" />
+            <element signature="e#93797#93967#1" />
+            <element signature="e#94055#94145#0" />
+            <element signature="e#94088#94135#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/flask/sessions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="347" column="8" selection-start-line="347" selection-start-column="8" selection-end-line="347" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/redis/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="584" column="8" selection-start-line="584" selection-start-column="8" selection-end-line="584" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://32d134f2-9493-456b-a279-067f8a668646/schema/db1/table/authdemo_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/32d134f2-9493-456b-a279-067f8a668646/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/flask_script/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="385" selection-start-line="385" selection-end-line="385" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding>
+            <marker date="1546419142000" expanded="true" signature="214:219" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/site-packages/flask/templating.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="121" column="4" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/shutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="976" selection-start-line="976" selection-end-line="976" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/templates/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/os.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="276" column="4" selection-start-line="276" selection-start-column="4" selection-end-line="276" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/zipfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1972">
+          <caret line="1059" column="8" selection-start-line="1059" selection-start-column="8" selection-end-line="1059" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/my_virtualenvs/env1/lib/python3.6/shutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="942" column="4" selection-start-line="942" selection-start-column="4" selection-end-line="942" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/flaskBlue/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="17" column="42" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="17" selection-end-column="42" />
+          <folding>
+            <marker date="1546437727000" expanded="true" signature="157:162" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/views/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#115#177#0" expanded="true" />
+            <marker date="1546501220000" expanded="true" signature="2048:2090" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myflaskForm/migrations/script.py.mako">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#122#145#0" expanded="true" />
+            <marker date="1546436351000" expanded="true" signature="328:512" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myflaskForm/myflaskForm/views/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding>
+            <marker date="1546504316000" expanded="true" signature="245:266" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/flaskBlue/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding>
+            <element signature="e#117#153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskDemo/flaskBlue/flaskBlue/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-125">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+          <folding>
+            <element signature="e#117#141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myflaskForm/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="14" column="80" selection-start-line="14" selection-start-column="74" selection-end-line="14" selection-end-column="80" />
+          <folding>
+            <marker date="1546503997000" expanded="true" signature="157:481" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myflaskForm/myflaskForm/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding>
+            <element signature="e#123#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myflaskForm/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding>
+            <element signature="e#117#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myflaskForm/myflaskForm/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-665">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding>
+            <element signature="e#117#143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

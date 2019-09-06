@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>图书管理页面</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>title</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in book_list %}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td>删除 | 编辑</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <hr>
+
+    {{my_func()|safe}}
+
+
+    <hr>
+    {{my_dict.get("ages", 0)}}
+</body>
+</html>

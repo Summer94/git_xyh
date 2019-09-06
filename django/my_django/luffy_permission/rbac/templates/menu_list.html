@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-info ">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">菜单管理</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group" style="margin: 5px 0">
+
+                            <a class="btn btn-info" href="{% url 'rbac:menu_add' %}">
+                                <i class="fa fa-plus-square" aria-hidden="true"></i> 添加菜单
+                            </a>
+
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>菜单名</th>
+                                <th>图片</th>
+                                <th>权重</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for menu in menu_list %}
+                                {% load rbac_tag %}
+                                <tr class="{% if request.GET.menu_id ==  menu.id|add_style  %}bg-info{% endif %}">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{% url 'rbac:menu_list' %}?menu_id={{ menu.id }}">{{ menu.title }}</a></td>
+                                    <td><i class="fa {{ menu.icon }}"></i></td>
+                                    <td>{{ menu.weight }}</td>
+                                    <td>
+                                        <a style="color: #333333;" href="{% url 'rbac:menu_edit' menu.id %}"
+                                           class="btn btn-success">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>编辑</a>
+                                        |
+                                        <a style="color: #d9534f;" href="{% url 'rbac:menu_del' menu.id %}"
+                                           class="btn btn-info"><i
+                                                class="fa fa-trash-o"></i>删除</a>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-info ">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">权限管理</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group" style="margin: 5px 0">
+
+                            <a class="btn btn-info" href="{% url 'rbac:permission_add' %}">
+                                <i class="fa fa-plus-square" aria-hidden="true"></i> 添加权限
+                            </a>
+
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>权限名</th>
+                                <th>url</th>
+                                <th>别名</th>
+                                <th>是否可显示</th>
+                                <th>所有菜单</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for permission in permission_list %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ permission.title }}</td>
+                                    <td>{{ permission.url }}</td>
+                                    <td>{{ permission.p_name }}</td>
+                                    <td>{{ permission.show }}</td>
+                                    <td>{{ permission.menu }}</td>
+                                    <td>
+                                        <a style="color: #333333;" href="{% url 'rbac:permission_edit' permission.id %}"
+                                           class="btn btn-success">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>编辑</a>
+                                        |
+                                        <a style="color: #d9534f;" href="{% url 'rbac:permission_del' permission.id %}"
+                                           class="btn btn-info"><i
+                                                class="fa fa-trash-o"></i>删除</a>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

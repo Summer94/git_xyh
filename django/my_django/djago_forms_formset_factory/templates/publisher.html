@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>publisher</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+</head>
+<body>
+<table border="1" class="table table-hover">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>出版社</th>
+        <th>地址</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for publisher in publisher_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ publisher.title }}</td>
+            <td>{{ publisher.addr }}</td>
+            <td><a href="{% url 'publisher_add' %}">添加</a> |
+           <a href="{% url 'publisher_edit' publisher.id %}">编辑</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<script src="{% static 'jquery.js' %}"></script>
+</body>
+</html>

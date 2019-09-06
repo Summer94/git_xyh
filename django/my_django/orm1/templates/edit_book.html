@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_book</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">修改书籍</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p>书籍名称
+                            <input type="text" value="{{ book.title }}" name="name">
+                        </p>
+                        <p>出版社
+                            <select name="publisher" id="publisher">
+                                {% for i in publisher_list %}
+                                    {% if book.publisher == i %}
+                                        <option selected value="{{ i.id }}">{{ i.name }}</option>
+                                    {% else %}
+                                        <option value="{{ i.id }}">{{ i.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </select>
+                        </p>
+                        <input type="submit" value="提交">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="/static/jquery.js"></script>
+</html>

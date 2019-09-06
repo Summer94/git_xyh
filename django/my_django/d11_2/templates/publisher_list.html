@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+{% block css %}
+    <style>
+        th {
+            text-align: center!important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h3>出版社信息页面</h3>
+    {#    <a href="{% url 'app01:add_publisher1' %}">#}
+    {#        <button type="button" class="btn btn-success">#}
+    {#            <span class="glyphicon glyphicon-plus" data-target="#add_publisher"></span> 添加出版社#}
+    {#        </button>#}
+    {#    </a>#}
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add_publisher">
+        <span class="glyphicon glyphicon-plus"></span>添加出版社
+    </button>
+    <table border="1" class="table table-bordered table-hover text-center">
+        <thead>
+        <tr class="info">
+            <th>序号</th>
+            <th>id</th>
+            <th>出版社名称</th>
+            <th>出版的书籍</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in publisher_list %}
+            <tr class="text-center">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>
+                    {% for book in item.book_set.all %}
+                        {% if forloop.last %}
+                            《{{ book.title }}》
+                        {% else %}
+                            《{{ book.title }}》，
+                        {% endif %}
+                    {% empty %}
+                        暂无书籍出版
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'app01:del_publisher' %}?id={{ item.id }}">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true">删除
+                        </button>
+                    </a>
+                    |
+                    <a href="{% url 'app01:edit_publisher' %}?id={{ item.id }}&name={{ item.name }}">
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add_publisher">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">添加出版社</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'app01:add_publisher' %}" method="post" novalidate autocomplete="off">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="publisher_name" id="mo_publisher_name">出版社名称</label>
+                            <input type="text" class="form-control" id="publisher_name" name="publisher_name"
+                                   placeholder="请输入出版社名称">
+                        </div>
+                        <button type="submit" class="btn btn-default" id="mo-add-name">添加</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+{% endblock %}
+{% block js %}
+{% endblock %}
