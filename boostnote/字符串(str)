@@ -1,0 +1,56 @@
+### 字符串(str)
+!!!error  注意:字符串是不可变类型数据，所以对它进行修改操作时是会产生新的字符串，原来的字符串是不变的
+!!!
+
+**字符串的使用方法**
+```python
+s = "summer_rian"
+print(s.strip()) #去除字符串两边的空格
+print(s.split("_"))  #根据"_"分割，返回的是列表
+print("-".join(["a", "b", "c"])) #将seq中的元素按照"_"连接成新的字符串
+print(s.replace("s","r"))  #既便没有"s",也不会报错
+print(s.swapcase())  #大小写转换
+print(s.upper())  #全部大写
+print(s.lower())  #全部小写
+print(s.title())  #以非字母为分割的字符串第一个字母大写
+print(s.capitalize()) #第一个字母大写
+print(s.startswith("s"))  #True  判断以什么开头
+print(s.endswith("n"))  #True  判断以什么结尾
+print("{} {}".format("123","summer"))
+print(s.center(50,"-"))    #以字符串为中心向两边填充特殊字符
+print(s.index("m")) #找不到报错
+print(s.find("v")) #找不到返回-1
+print(s.count("m"))  #计数
+print(s.isdigit())  #字符串由数字组成
+print(s.isalpha())  #字符串由字母组成
+print(s.isalnum()) #字符串由字母或数字组成
+
+字符串的切片
+print(s[1])
+print(s[0:3])
+print(s[::2])
+print(s[::-1])
+print(s[-1:3:-1])
+
+
+字符串的拼接
+s1 = "summer"
+s2 = "rain"
+s = s1 + s2
+
+
+字符串的格式化
+%s
+name = "summer"
+age = "24"
+print("我的名字是:%s" %name)
+
+format的三种形式
+print("我的名字是:{},我现在{}岁了".format(name,age))
+print("我的名字是:{0},我现在{1}岁了".format(name,age))
+print("我的名字是:{name1},我现在{age1}岁了".format(name1=name,age1=age))
+
+```
+
+
+
