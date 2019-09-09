@@ -1,0 +1,72 @@
+#AJAX
+AJAX
+>(Asynchronous Javascript And XML)翻译成中文就是“异步的Javascript和XML”。即使用Javascript语言与服务器进行异步交互，传输的数据为XML（当然，传输的数据不只是XML);
+>在不加载当前页面的情况下想服务端发送数据并将返回的数据填充到网页中
+>
+优点
+>AJAX使用JavaScript技术向服务器发送异步请求；
+>AJAX请求无须刷新整个页面；
+>因为服务器响应内容不再是整个页面，而是页面中的部分内容，所以AJAX性能高； 
+
+>同步交互：客户端发出一个请求后，需要等待服务器响应结束后，才能发出第二个请求；
+>异步交互：客户端发出一个请求后，无需等待服务器响应结束，就可以发出第二个请求。
+
+
+#### Jquery下发起AJAX请求
+```js
+$("#ajax-btn").on("click", function () {
+        $.ajax({
+            url: "{% url 'login' %}",
+            type: "POST",
+            data: {"name": $("#name").val(), "pwd": $("#pwd").val(), "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val()},
+            success: function (ret) {
+                if (ret.status === 1){
+                    location.href = "{% url 'publisher_list' %}"
+                }
+                else {
+                    var error_msg = ret.error_msg;
+                    $("#msg-error").text(error_msg);
+                }
+            }
+
+        })
+    })
+```
+**通过data设置csrf_token是注意，在html中必须要有{% csrf_token %}**
+
+#### js实现原生AJAX
+```js
+var b = document.getElementById("b1");
+b.onclick = functiuon(){
+  var xmlObj = new XMLHttpRequrest();
+  xmlObj.append("POST", "/login/", true);
+  xmlObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlObj.send("username=summer&password=123");
+  xmlObj.onreadystatechange = function(){
+    if (xmlObj.readyState === 4 && xmlObj.status === 200){
+      alert(xmlObj.responseText);
+    }
+  }
+  
+}
+
+```
+
+#### AJAX上传文件
+```js
+$("#b3").click(function () {
+  var formData = new FormData();
+  formData.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+  formData.append("f1", $("#f1")[0].files[0]);
+  $.ajax({
+    url: "/upload/",
+    type: "POST",
+    processData: false,  // 告诉jQuery不要去处理发送的数据
+    contentType: false,  // 告诉jQuery不要去设置Content-Type请求头
+    data: formData,
+    success:function (data) {
+      console.log(data)
+    }
+  })
+})
+```
