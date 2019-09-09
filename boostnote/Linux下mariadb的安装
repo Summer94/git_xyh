@@ -1,0 +1,44 @@
+# Linux下mariadb的安装
+
+1. 使用阿里云的mariadb
+>yum install mariadb-server mariadb -y  
+2. 启动mariadb数据库
+>systemctl start/stop/status/restart mariadb 
+3. 安装完毕mariadb，初始化数据库
+>mysql_secure_installation
+>输入这条命令后会有很多选项，注意选择
+4. 登录数据库
+>mysql -uroot -p 
+5. 配置数据库支持中文
+>vim /etc/my.conf
+>[mysqld]
+			character-set-server=utf8
+			collation-server=utf8_general_ci
+			log-error=/var/log/mysqld.log
+			datadir=/var/lib/mysql
+			socket=/var/lib/mysql/mysql.sock
+[client]
+			default-character-set=utf8
+[mysqld_safe]
+			log-error=/var/log/mariadb/mariadb.log
+			pid-file=/var/run/mariadb/mariadb.pid
+
+6. 重启数据库加载/etc/my.conf
+>systemctl restart mariadb 
+
+7.登录新的数据库，查看中文编码设置
+>MariaDB [(none)]> \s
+
+注意，在没有修改中文设置之前创建的数据库还是原来的设置
+
+
+# Linux下mariadb的卸载
+1. rpm -qa | grep mariadb 找到所有相关的软件包
+>通过这个命令将搜索的包全部卸载
+yum remove mariadb-libs-5.5.56-2.el7.x86_64
+yum remove mariadb
+2. 删除遗留目录
+>ls /etc/my.cnf
+rm -rf /etc/my.cnf
+rm -rf /var/lib/mysql/
+
