@@ -1,0 +1,118 @@
+# 数据库的视图、触发器、事务以及存储过程
+
+## 视图
+为什么使用视图？
+>使用视图我们可以把查询过程中的临时表摘出来，保存下来，用视图去实现，这样以后再想操作该临时表的数据时就无需重写复杂的sql了，直接去视图中查找即可
+
+
+创建视图
+>语法：CREATE VIEW 视图名称 AS  SQL语句
+>
+>create view teacher_view as select tid from teacher where tname='summer';
+
+删除视图
+>语法：DROP VIEW 视图名称
+>
+>DROP VIEW teacher_view
+
+
+缺点
+>一旦sql需要修改且涉及到视图的部分，则必须去数据库中进行修改，然后再到自己的应用程序里面将那个sql语句改一改，需要很多的修改工作,并且在修改视图中的数据是也会修改数据库中的数据
+
+
+
+
+## 触发器
+
+为什么使用触发器？
+>使用触发器可以定制用户对某一张表的数据进行【增、删、改】操作时前后的行为，注意：没有查询，在进行增删改操作的时候，触发的某个操作，称为触发器，也就是增删改的行为触发另外的一种行为，触发的行为无非就是sql语句的事情，及自动运行另外一段sql语句
+
+创建触发器
+>插入前
+CREATE TRIGGER tri_before_insert_tb1 BEFORE INSERT ON tb1 FOR EACH ROW
+BEGIN #begin和end里面写触发器要做的sql事情，注意里面的代码缩进，并且给触发器起名字的时候，名字的格式最好这样写，有表示意义，一看名字就知道要做什么，是给哪个表设置的触发器
+    ...
+END
+
+>插入后
+CREATE TRIGGER tri_after_insert_tb1 AFTER INSERT ON tb1 FOR EACH ROW
+BEGIN
+    ...
+END
+
+>删除前
+CREATE TRIGGER tri_before_delete_tb1 BEFORE DELETE ON tb1 FOR EACH ROW
+BEGIN
+    ...
+END
+
+
+实际应用
+>#创建触发器
+delimiter //      （或者写$$，其他符号也行，但是不要写mysql不能认识的，知道一下就行了），delimiter 是告诉mysql，遇到这句话的时候，就将sql语句的结束符分号改成delimiter后面的//
+CREATE TRIGGER tri_after_insert_cmd AFTER INSERT ON cmd FOR EACH ROW               #在你cmd表插入一条记录之后触发的。
+BEGIN           #每次给cmd插入一条记录的时候，都会被mysql封装成一个对象，叫做NEW，里面的字段都是这个NEW的属性
+    IF NEW.success = 'no' THEN           #mysql里面是可以写这种判断的，等值判断只有一个等号，然后写then
+            INSERT INTO errlog(err_cmd, err_time) VALUES(NEW.cmd, NEW.sub_time) ;     #必须加分号，并且注意，我们必须用delimiter来包裹，不然，mysql一看到分号，就认为你的sql结束了，所以会报错
+      END IF ;       #然后写end if，必须加分号  
+END//      #只有遇到//这个完成的sql才算结束
+delimiter ;        #然后将mysql的结束符改回为分号
+
+
+删除触发器
+>drop trigger tri_after_insert_cmd;
+
+
+## 事务
+事务用于将某些操作的多个SQL作为原子性操作，一旦有某一个出现错误，即可回滚到原来的状态，从而保证数据库数据完整性。
+
+事务四大特性（ACID）
+>1.原子性（Atomicity）
+事务是一个不可分割的单位，事务中的所有SQL等操作要么全都发生，要么都不发生
+	2.一致性（Consistency）
+事务发生前和发生后，数据的完整性必须保持一致
+	3.隔离性（Isolation） 
+当并发访问访问数据库时，一个正在执行的事务在执行完毕前，对于其他的会话是不可见的，多个并发事务之间的数据库是相互隔离的。
+	4.持久性（Durability）
+一个事务一旦被提交，它对数据库中的数据改变就是永久性的。如果出了错误，事务也不允许撤销，只能通过“补偿性事务”
+
+创建事务
+>#通过存储过程来捕获异常：(shit！，写存储过程的是，注意每一行都不要缩进！！！按照下面的缩进来写，居然让我翻车了！！！我记住你了)，我的代码直接黏贴就能用。
+
+>delimiter //
+create PROCEDURE p5()
+BEGIN 
+DECLARE exit handler for sqlexception 
+BEGIN 
+rollback; 
+END;
+START TRANSACTION; 
+update user set balance=900 where name='wsb'; #买支付100元
+update user set balance=1010 where name='chao'; #中介拿走10元
+#update user2 set balance=1090 where name='ysb'; #卖家拿到90元
+update user set balance=1090 where name='ysb'; #卖家拿到90元
+COMMIT;
+END //
+delimiter ;
+
+
+## 存储过程
+什么是存储过程？
+>存储过程包含了一系列可执行的sql语句，存储过程存放于MySQL中，通过调用它的名字可以执行其内部的一堆sql
+
+创建存储过程
+>delimiter //
+create procedure p1()
+BEGIN
+    select * from blog;
+    INSERT into blog(name,sub_time) values("xxx",now());
+END //
+delimiter ;
+
+在mysql中调用
+>call p1(); #类似于MySQL的函数，但不是函数昂，别搞混了，MySQL的函数(count()\max()\min()等等)都是放在sql语句里面用的，不能单独的使用，存储过程是可以直接调用的  call 名字+括号;
+#MySQL的视图啊触发器啊if判断啊等等都能在存储过程里面写，这是一大堆的sql的集合体，都可以综合到这里面
+
+在python中基于pymysql调用
+>cursor.callproc('p1') 
+print(cursor.fetchall())
