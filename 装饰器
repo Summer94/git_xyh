@@ -1,0 +1,22 @@
+# 装饰器
+```python
+from functools import wraps
+
+def outer(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        res = func(*args, **kwargs)
+        print(func.__name__,11111)
+        return res
+    return inner
+
+@outer
+def f1():
+    print(f1.__name__,22222)
+    return 11
+
+f1()
+#########运行结果######
+f1 22222
+f1 11111
+```
