@@ -1,0 +1,83 @@
+### 查看路径下所有文件的方法：
+
+#### glob
+glob的查找规则与re模块的正则表达式不相同
+模式规则要应用于文件名中的段。模式中的路径可以是相对路径或绝对路径。
+shell变量名和波浪线都不会扩展。
+
+glob.glob("/tmp/*")
+这个模式会匹配所有的路径名，但是不会递归搜索到子目录。
+```python
+import glob
+l = []
+def foo(path):
+    for i in glob.glob(path):
+        if os.path.isdir(i):
+            foo(i+"/*")
+        else:
+            l.append(i)
+foo("/Users/summer/PycharmProjects/s1/day24/*")
+print(l)
+
+glob.glob("/Users/summer/PycharmProjects/s1/day24/*")
+查看当前目录下一层的所有文件及文件夹
+```
+```python
+print(os.listdir("/Users/summer/PycharmProjects/s1/day24"))
+["01.py", "02.py", "03.py", "count_code_all.py", "studnets", "学生选课系统升级2"]
+
+```
+#### 递归
+```python
+l = []
+def get_file(path):
+    for i in os.listdir(path):
+        p = os.path.join(path,i)
+        if os.path.isdir(p):
+            get_file(p)
+        else:
+            l.append(p)
+            
+get_file("/Users/summer/PycharmProjects/s1/day24")
+print(l)
+```
+#### 循环
+```python
+path = "/Users/summer/PycharmProjects/s1/day24"
+l = [path,]
+l1 = []
+while l:
+    current_path = l.pop()
+    for i in os.listdir(current_path):
+        p = os.path.join(current_path,i)
+        if os.path.isdir(p):
+            l.append(p)
+        else:
+            l1.append(p)
+print(l1)
+```
+
+```python
+import os
+
+def count_file():
+    path = os.path.dirname(__file__)
+    p_l = [path,]
+    count = 0
+    while p_l:
+        current_dir = p_l.pop()
+        if current_dir:
+            for p in os.listdir(current_dir):
+                p = os.path.join(current_dir,p)
+                if os.path.isdir(p):
+                    p_l.append(p)
+                else:
+                    with open(p,"rb") as f:
+                        for line in f:
+                            if line.strip():
+                                count += 1
+
+    else:
+        print(count)
+        return count
+```
