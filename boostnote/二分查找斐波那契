@@ -1,0 +1,80 @@
+### 二分查找
+
+```python
+
+
+def binary_search(li, val):
+    left = 0
+    right = len(li) - 1
+    while left <= right: #后选区有值
+        mid = (left + right) // 2
+        if li[mid] == val:
+            return val
+        elif li[mid] > val: #查找的值在mid的左边，那么right就要移动
+            right = mid - 1
+        else: #li[mid] < val 查找的值在mid的右边，left移动
+            left = mid + 1
+    else:
+        return None
+      
+      
+-------------------------
+l=[1,2,10,30,33,99,101,200,301,311,402,403,500,900,1000]
+def search(n,l):
+    if len(l) == 1:
+        print("not exit")
+        return
+    index = len(l)//2
+    if n > l[index]:
+        l = l[index+1:]
+        search(n,l)
+    elif n < l[index]:
+        l = l[:index]
+        search(n,l)
+    else:
+        print("find it")
+
+search(200,l)
+```
+
+```python
+def search(n,l,start=0,stop=len(l)-1):
+    if start <= stop:
+        mid = start + (stop-start) // 2
+        print('start:[%s] stop:[%s] mid:[%s] mid_val:[%s]' % (start, stop, mid, l[mid]))
+        if n > l[mid]:
+            start = mid + 1
+        elif n < l[mid]:
+            stop = mid - 1
+        else:
+            print("find it")
+            return
+        search(n,l,start,stop)
+    else:
+        print("not exits")
+
+search(10,l)
+
+```
+
+### 斐波那契
+>非递归
+```python
+def fib(n):
+    a,b = 0,1
+    while a < n:
+        print(a,end=" ")
+        a,b = b,a+b
+fib(100)
+```
+>递归
+```python
+def fib(a,b,stop):
+    if a > stop:
+        return
+    print(a,end=" ")
+    fib(b,a+b,stop)
+
+fib(0,1,100)
+
+```
