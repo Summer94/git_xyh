@@ -1,0 +1,38 @@
+### 匿名函数
+>匿名函数就是没有名字的函数，与函数有相同的作用域，但是使用一次就会释放
+`lambda x,y,z:x+y+z`
+```python
+func=lambda x,y,z=1:x+y+z 
+func(1,2,3)
+```
+![dc54a462.png](:storage/2f381886-17f1-4e77-93fc-1a067c631f72/dc54a462.png)
+> 在实际应用中，我们通常将匿名函数和内置函数结合起来使用
+```python
+l1 = [1,2,4]
+sorted(l1,key=lambda x:x+1)
+min(l1,key=lambda x:x+1)
+max(l1,key=lambda x:x+1)
+filter(lambda x:x>2,l1)
+map(lambda x:x+1,l1)
+```
+> min代码执行流程：
+1. 首先会将iterable里面的每个元素自动提取出来
+2. 然后会将你的返回值作为比较大小的具体条件
+3. 最后会将遍历的元素返回回来
+
+
+> **map()** 映射，会根据提供的函数对指定序列做映射,相当于列表推导式的循环
+```python
+l1 = [1,2,3,4]
+l2 = (i**2 for i in l1)
+print(list(l2))
+res = map(lambda x:x**2,l1)
+print(list(res))
+
+```
+> **filter()**  筛选，把结果正确的元素留下来，相当于列表推导式的筛选
+```python
+res1 = filter(lambda x:x%2==0,l1)  
+print(list(res1))
+```
+
