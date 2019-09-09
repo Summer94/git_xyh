@@ -1,0 +1,70 @@
+# mariadb主从备份
+
+### master主库配置
+1. 停止mariadb
+> systemctl stop mariadb
+
+2. 修改配置文件my.conf
+> vim /etc/my.cnf
+> [mysqld]
+server-id=1
+log-bin=mysql-bin
+server-id服务的唯一标识（主从之间都必须不同）；log-bin启动二进制日志名称为mysql-bin 
+
+3. 重启mariadb
+> systemctl start mariadb
+
+####  master主库添加从库账号
+1. 新建用于主从同步的用户ccc,允许登录的从库是'192.168.11.175'
+>create user 'ccc'@'192.168.11.175' identified by '123456';
+
+2. 给该用户授权，只能查看的权限
+>grant select on *.* to 'ccc'@'%';
+
+3. 授予普通用户，slave的身份
+>grant replication slave on *.* to 'ccc'@'192.168.11.175';
+>检查授权账号的权限
+>show grants for ccc@'192.168.11.175';
+
+4. 实现对主数据库锁表只读，防止数据写入，数据复制失败
+>flush table with read lock;
+
+5. 记录下主库的状态，记录下，日志文件的名字，和位置
+>show master status;
+> File             | Position | 
+| mysql-bin.000003 |     1574
+
+6. 锁表后，一定要单独再打开一个SSH窗口，导出数据库的所有数据，
+>mysqldump -uroot -p --all-databases > /opt/all.sql
+
+7. 确保数据导出后，没有数据插入，完毕再查看主库状态
+>show master status;
+
+8. 状态没有变化，，解锁主库，恢复可写
+>unlock tables;
+
+
+
+### 从库配置
+1. 从主库中奖数据下载过来
+> scp root@47.110.52.76:/opt/all.sql /tmp
+2. 修改Slave的/etc/my.cnf,并重启数据库
+>vim /etc/my.conf
+>[mysqld]
+server-id=3
+read-only=true
+systemctl restart mariadb
+
+3. 恢复主库Master的数据导入到Slave库
+>MariaDB [raindb]> source /tmp/all.sql;
+
+4. 配置复制的参数，Slave从库连接Master主库的配置
+>change master to master_host='47.110.52.76',master_user='ccc',master_password='123456',master_log_file='mysql-bin.000003',master_log_pos=1574;
+
+5. 启动从库的同步开关，测试主从复制的情况
+>start slave;
+
+### 取消主从同步
+在主库中
+mysql>change master to master_host=''
+mysql>stop slave;reset slave;
