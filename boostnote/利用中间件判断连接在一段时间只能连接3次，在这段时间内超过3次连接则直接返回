@@ -1,0 +1,25 @@
+#利用中间件判断连接在一段时间只能连接3次，在这段时间内超过3次连接则直接返回
+```python
+from django.utils.deprecation import MiddlewareMixin
+from django.shortcuts import HttpResponse,render,redirect
+
+
+
+limit_dic = {
+    "127.0.0.1": [1542252426.783346, 1542252426.23423]
+}  #存放ip地址与最新连接时间的对应关系
+class Limit(MiddlewareMixin):
+    def process_request(self, request):
+        ip = request.META["REMOTE_ADDR"]  #获取连接的ip
+        if not ip in limit_dic:
+            limit_dic[ip] = []  #新连接过来时，给他重新建立一个对应的列表
+        history = limit_dic[ip] #得到时间列表
+        now = time.time()
+        while history and now - history[-1] > 60:
+          # 首先判断时间列表里面是否存在数据，如果不存在数据，说明连接已经存在很久，数据被删除了，或者是一个新来的连接；存在数据的话判断最先连接的时间，间隔如果大于60s则会被清空，循环直至时间列表里面的数据都是60s内的连接时间时方止。
+            history.pop()
+        history.insert(0, now) #将最新的连接时间插入到时间列表的第一位
+        print(history)
+        if len(history) > 3: #判断时间列表的长度，大于3的话肯定是在60s内进来太多的连接
+            return HttpResponse("滚")
+```
