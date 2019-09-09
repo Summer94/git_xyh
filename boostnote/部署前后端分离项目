@@ -1,0 +1,149 @@
+#  部署前后端分离项目
+将本地的项目上传到服务器上
+>scp上传
+>或者通过wget下载到服务器上
+>wget https://files.cnblogs.com/files/pyyu/luffy_boy.zip
+wget https://files.cnblogs.com/files/pyyu/07-luffy_project_01.zip
+
+### 配置node环境
+1. 在服务器上编译打包vue项目，必须得有node环境
+>下载node二进制包，此包已经包含node，不需要再编译
+>wget https://nodejs.org/download/release/v8.6.0/node-v8.6.0-linux-x64.tar.gz
+>解压
+>tar -zxvf node-v8.6.0-linux-x64.tar.gz
+> cd node-v8.6.0-linux-x64/
+
+2. 将node命令添加入/etc/profile中
+>vim /etc/profile
+>最后一行加入
+>PATH=$PATH:/opt/node-v8.6.0-linux-x64/bin
+
+3. 读取文件，使之生效
+>source /etc/profile
+
+4. 测试path
+>node -v
+>npm -v
+
+### 进入项目中，安装node项目，打包node模块
+1. 进入vue源码目录
+>cd 07-luffy_project_01/
+
+2. 安装vue模块，默认去装package.json的模块内容，如果出现模块安装失败，手动再装
+>npm install
+>命令执行后，注意要有生成 node_modules文件夹
+>此时注意，你本地写的vue代码，接口很可能连接的服务器地址有问题，注意Axios.POST提交的地址，一定得发送给django应用（如果用了nginx，就发送给nginx的入口端口）
+这里为了试验方便，将vue项目和django项目放在了一台服务器，通过nginx反向代理功能(8000端口)，转发vue请求给django(9000)
+
+3. 准备编译打包vue项目，替换配置文件所有地址，改为服务器地址
+>sed -i 's/127.0.0.1/47.110.52.76/g' /opt/07-luffy_project_01/src/restful/api.js
+
+4. 此时打包vue项目，生成一个dist静态文件夹
+>npm run build
+
+5. 检查dist文件夹
+>[root@aliyun-summer ~]# ls /opt/07-luffy_project_01/dist/
+index.html  static
+>这样就完成了
+
+### 后端配置
+#### 首先安装项目的依赖包
+1. 进入项目中，新建requirements.txt文件，写入项目相关的依赖包
+>touch requirements.txt
+>vim requirements.txt
+
+2. 指定python解释器版本
+>pipenv --python python3
+
+3. 开启虚拟环境,并换一个国外的源，下载速度更快
+>pipenv shell
+
+4. 安装依赖包
+>pipenv install
+
+注意目录中初始化虚拟环境之前，就要有requirements.txt这个文件，他会将里面所有的依赖包加载到Pipfile中，然后根据这个文件下载包
+
+#### 启动redis
+1. 首先配置reids启动文件
+> touch redis-6379.conf
+> 这个文件可以叫任何名字，这个只在第一次启动redis时会用到，后面就会根据里面的配置启动
+> (luffy_boy) [root@aliyun-summer luffy_boy]# cat /usr/local/redis-4.0.10/redis-6379.conf
+port 6379
+daemonize yes
+pidfile /usr/local/redis-4.0.10/data/6379/redis.pid
+loglevel notice
+logfile "/usr/local/redis-4.0.10/data/6379/redis.log" #这个文件要自己在相应的目录下创建
+dir /usr/local/redis-4.0.10/data/6379
+protected-mode yes
+
+2. 启动redis服务
+>redis-server /usr/local/redis-4.0.10/redis-6379.conf
+
+3.查看进程是否启动
+>ps -ef|grep redis
+
+
+#### 配置uwsgi
+uwsgi是实现了python wsgi协议的一个web服务器
+1. 安装uwsgi
+>pip3 install uwsgi
+
+2. 使用uwsgi.ini配置文件去启动项目，这个文件自己去创建即可，放哪都可以,但是放在项目中最好
+> touch /opt/luffy_boy/uwsgi.ini
+
+3. 写入如下配置信息
+>![88ad57a5.png](:storage/8442c123-49ee-482b-9e93-578c1246193f/88ad57a5.png)
+
+4. 这样就可以再项目目录下使用uwsgi命令启动django项目了
+>(luffy_boy) [root@aliyun-summer luffy_boy]# uwsgi --ini uwsgi.ini
+>注意要将uwsgi.ini中的socket注释掉，改用http模式
+
+
+#### 配置nginx
+1. 新建一个static目录，为了跟之前配置nginx的static区分开，所以可以加个前缀区分
+>mkdir /opt/luffy_static
+
+2. 修改knight.settings
+>在最后加一个参数
+>STATIC_ROOT= '/opt/luffy_static'
+
+3. 使用命令收集django的静态文件
+>python3 manage.py collectstatic
+
+4. 配置nginx，使用nginx反向代理功能
+>(luffy_boy) [root@aliyun-summer luffy_boy]# vim /opt/nginx112/conf/nginx.conf
+>![465589b8.png](:storage/8442c123-49ee-482b-9e93-578c1246193f/465589b8.png)
+
+5. 重启nginx，加载配置文件
+> ./nginx -s reload 
+
+此时就可以用uwsgi+nginx启动项目了
+uwsgi --ini uwsgi.ini
+注意要启用uwsgi.ini中的scoket
+
+#### 配置supervisor进程管理工具，管理uwsgi
+1. 编辑配置文件，写入管理路飞业务的命令
+>vim /etc/supervisor.conf 
+
+2. 写入如下信息
+>[program:my_luffy]
+command=/root/.local/share/virtualenvs/luffy_boy-8uvrb15Z/bin/uwsgi   /opt/luffy_boy/uwsgi.ini
+stopasgroup=true     ;默认为false,进程被杀死时，是否向这个进程组发送stop信号，包括子进程
+killasgroup=true     ;默认为false，向进程组发送kill信号，包括子进程
+
+
+
+#### 所有的配置都做完了，那就可以开始启动项目了
+1.  启动服务器
+>supervisord  -c /etc/supervisor.conf 
+
+2. 管理客户端
+>supervisorctl -c /etc/supervisor.conf 
+>![17a2ab92.png](:storage/8442c123-49ee-482b-9e93-578c1246193f/17a2ab92.png)
+>start my_luffy 启动
+>stop my_luffy 关闭
+
+注意，可能在前面配置文件的时候就会启动项目，造成报错，那么就可以通过以下的命令找出来并杀死进程，然后重启
+>netstat -tunlp 查看端口号
+>ps -ef| grep super  查看supervisor
+
