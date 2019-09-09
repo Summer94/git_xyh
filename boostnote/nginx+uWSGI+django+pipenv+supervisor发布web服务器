@@ -1,0 +1,120 @@
+# nginx+uWSGI+django+pipenv+supervisor发布web服务器
+
+### 部署knight项目的前提
+1. 上传文件夹
+- windows上使用xftp工具上传文件夹到服务器上
+- linux及mac使用scp命令上传
+>scp -r /Users/summer/PycharmProjects/my_django/knight root@47.110.52.76:/opt
+
+2. 完成python3解释器的安装
+3. 完成pipenv的安装
+>pip3 install pipenv
+
+4. centos7下安装配置mariadb数据库，并将本地的数据导入到服务器上的数据库中
+>启动mariadb数据库
+systemctl start mariadb
+连接数据库，需要对root用户设置远程连接的权限
+grant all privileges on *.* to root@'%' identified by '123456';
+刷新授权表
+flush privileges;
+注意关闭linux的防火墙
+systemctl stop firewalld
+iptable -F
+setenforce 0
+
+>从本地到处数据库
+mysqldump -u root -p --all-databases >  knight.dump(到处所有的库) 
+mysqldump -uroot -p knight > knightDB.sql(只到处该项目的数据库)
+将这个文件上传到服务器上
+scp /Users/summer/knightDB.sql root@47.110.52.76:/opt
+在服务器上的数据库中先创建这个数据库
+create database knight；
+然后退出数据库，导入数据
+mysql -uroot -p  knight < /opt/knight.sql
+
+配置完成后，修改项目中的配置文件
+>settings中
+>ALLOWED_HOSTS = ["*"]
+>DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "knight",  # 需要自己手动创建数据库
+        "USER": "root",
+        "PASSWORD": "123456",
+        "HOST": "0.0.0.0",
+        "PORT": 3306,
+    }
+}
+
+进入项目中，打开虚拟环境
+>cd /opt/knight
+pipenv --python python3
+pipenv shell
+
+测试使用linux的python解释器去运行项目(注意要解决解释器的模块问题，才能正常运转项目)
+>python3 manage.py runserver 47.110.52.76:8000
+>根据报错去下载软件包
+>pipenv install 软件名
+>其中multiselectfield 下载时下载这个django-multiselectfield
+
+
+### 安装uwsgi这个支持并发的web服务器，去启动django
+1. 安装uwsgi
+>pip3 install uwsgi
+
+2. 通过uwsgi启动django项目(注意这里要进入knight项目目录)
+>uwsgi --http :8000 --module  knight.wsgi 
+
+3. uwsgi自动重启python程序
+uwsgi --http :8000  --module  knight.wsgi  --py-autoreload=1
+
+4. 使用uwsgi.ini配置文件去启动项目，这个文件自己去创建即可，放哪都可以
+>(knight) [root@aliyun-summer knight]#
+>touch  uwsgi_nginx.ini
+>vim uwsgi_nginx.ini 
+>![df6c505b.png](:storage/447b4658-d6a9-4b94-8a96-aa05ba35249d/df6c505b.png)
+
+5. 指定配置文件去启动uwsgi
+>uwsgi --ini  uwsgi.ini  
+
+
+### 加上nginx处理静态文件
+1. 新建一个static目录
+>mkdir /opt/static
+
+2. 修改knight.settings
+>在最后加一个参数
+>STATIC_ROOT= '/opt/static'
+
+3. 使用命令收集django的静态文件
+>python3 manage.py collectstatic
+
+4. 配置nginx，反向代理，找到uwsgi项目，且配置nginx处理uwsgi的静态文件
+>vim /opt/nginx112/conf/nginx.conf
+>server {
+        listen       80;
+        server_name  47.110.52.76;
+
+        #charset koi8-r;
+
+        access_log  logs/host.access.log  main;
+
+        location / {
+          # root   html;
+           #index  index.html index.htm;
+          include uwsgi_params;
+          uwsgi_pass 0.0.0.0:8000;
+
+        }
+        location /static {
+        alias /opt/static;
+        }
+
+注意使用nginx时要修改uwsgi.ini中的配置，使用socket
+
+
+
+
+
+
+
