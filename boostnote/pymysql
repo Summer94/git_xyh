@@ -1,0 +1,108 @@
+# day43 pymysql
+
+```python
+#导入pymsql
+import pymsql
+
+name = input("name>>>").strip()
+pwd = input("password>>>").strip()
+
+#连接数据库
+conn = pymysql.connect(host='localhost',port=3306,user='root',password='123456',database='db3',charset='utf8')
+
+#获取光标对象
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor) #返回的是一个含有多个字典的列表
+cursor = conn.cursor() #返回的是一个含有多个元组的元组
+
+#执行sql语句
+
+# sql = "select *  from userinfo where name='%s' and password='%s';"%(name,pwd)
+# res = cursor.execute(sql)
+
+#解决sql注入的问题
+sql = "select * from userinfo where name=%s and password=%s;"
+
+#获得受影响的条数
+res = cursor.execute(sql,[name,pwd]) #让pymsql帮我们拼接sql语句
+print(res)
+
+#获取数据
+ret = cursor.fetchall()
+print(ret)
+
+#关闭连接
+cursor.close()
+conn.close()
+```
+
+### 数据库的增删改查
+#### 除了查的操作不用conn.commit()外，其他的操作都需要
+
+```python
+import pymysql
+
+conn = pymysql.connect(host='localhost',port=3306,user='root',password='123456',database='db3',charset='utf8')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+#添加一条信息
+sql = "insert into userinfo(name,password) values(%s,%s)"
+res = cursor.execute(sql,["rain222","1234"])
+print(res)
+
+#批量增加
+sql = "insert into userinfo(name,password) values(%s,%s)"
+res = cursor.executemany(sql,[("alex111","123"),("alex222","123"),("alex333",123)])
+print(res)
+conn.commit()
+
+#修改
+sql = "update userinfo set password=%s where name=%s;"
+res = cursor.execute(sql,["666","summer1"])
+print(res)
+conn.commit()
+
+#删除
+sql = "delete from userinfo where name=%s"
+res = cursor.execute(sql,["summer3",])
+print(res)
+conn.commit()
+
+#查询
+sql = "select * from userinfo;"
+res = cursor.execute(sql)
+
+ret = cursor.fetchone() #获取查询的第一条信息
+ret = cursor.fetchmany(3) #获取查询的指定条数的信息
+ret = cursor.fetchall() #获取查询的所有性信息
+print(ret)
+cursor.scroll(0,mode="absolute") #移动光标  绝对移动
+cursor.scroll(1,mode="relative") #相对移动
+ret = cursor.fetchall()
+print(ret)
+
+```
+
+#### 数据回滚与查看刚提交数据的id
+在插入或者修改数据失败的时候回滚
+
+```python
+import pymysql
+
+conn = pymysql.connect(host='localhost',port=3306,user='root',password='123456',database='db3',charset='utf8')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+sql = "insert into userinfo(name,password) values(%s,%s)"
+try:
+    # 执行SQL语句
+    res = cursor.execute(sql,["rain222","1234"])
+    # 提交事务
+    conn.commit()
+    # 提交之后，获取刚插入的数据的ID
+    last_id = cursor.lastrowid
+except Exception as e:
+    # 有异常，回滚事务
+    conn.rollback()
+cursor.close()
+conn.close()
+
+```
