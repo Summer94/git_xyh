@@ -1,0 +1,44 @@
+# linux下的redis的安装配置
+### 编译安装
+1. 下载redis的源码包,在哪个目录下就会下载到该目录
+>wget http://download.redis.io/releases/redis-4.0.10.tar.gz
+
+2. 解压
+>可以先mv到/usr/local下解压，或是下载的时候就下载到/usr/local下
+>tar -zxvf  redis-4.0.10.tar.gz
+
+3. cd到解压后的redis源码包目录中去
+>cd redis-4.0.10
+
+4. 编译且安装
+>make && make install 
+
+5. 启动redis服务端,看是否能够进去redis
+>redis-server
+
+6. 配置自定义参数去自动在redis-6379.conf配置文件中，定制一些安全参数
+>1. 在redis目录下新建一个文件
+>touch redis-6380.conf
+>2. 在redis-6380.conf中写入以下参数
+>>port 6380 #运行在6380的redis数据库实例
+daemonize yes
+pidfile /usr/local/redis-4.0.10/data/6380/redis.pid #存放redis pid的文件
+loglevel notice #日志等级
+logfile /usr/local/redis-4.0.10/data/6380/redis.log #指定redis日志文件的生成目录
+dir /usr/local/redis-4.0.10/data/6380 #指定redis数据文件夹的目录
+protected-mode yes  #后台运行redis  
+requirepass 940513  #设置redis的密码
+其中
+/usr/local/redis-4.0.10/data/6380
+/usr/local/redis-4.0.10/data/6380/redis.pid
+/usr/local/redis-4.0.10/data/6380/redis.log
+都需要自己新建目录或者文件
+
+7. 启动redis服务器，指定配置文件启动
+>redis-server   redis-6380.conf 
+
+8. 访问redis数据库
+>redis-cli  -p 6380 
+>这种进入后是没有权限读写的，要输入auth，输入密码才可以
+>redis-cli  -p 6380 -a 940513 直接访问
+
