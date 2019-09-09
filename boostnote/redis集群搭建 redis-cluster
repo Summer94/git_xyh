@@ -1,0 +1,97 @@
+# redis集群搭建 redis-cluster
+背景：当业务的并发很高的时候需要应用到分布式数据库，将压力分散，即将整个数据集划分到多个节点上，每个节点负责整个数据集的一个子集
+
+虚拟槽分区巧妙地使用了哈希空间，使用分散度良好的哈希函数把所有的数据映射到一个固定范围内的整数集合，整数定义为槽
+
+redis的虚拟槽分区
+>Redis Cluster槽的范围是0 ～ 16383。
+槽是集群内数据管理和迁移的基本单位。采用大范围的槽的主要目的是为了方便数据的拆分和集群的扩展
+每个节点负责一定数量的槽。
+
+搭建redis cluster
+> 准备节点（几匹马儿）
+> 节点通信（几匹马儿分配主从）
+> 分配槽位给节点（slot分配给马儿）
+
+redis-cluster集群架构
+>多个服务端，负责读写，彼此通信，redis指定了16384个槽。
+>多匹马儿，负责运输数据，马儿分配16384个槽位，管理数据。
+>ruby的脚本自动就把分配槽位这事做了
+
+
+### 环境准备
+1. 通过配置，开启redis-cluster
+>vim redis-7000.conf 写入如下配置信息
+>[root@localhost redis-4.0.10]# cat redis-7000.conf 
+port 7000
+daemonize yes
+dir "/opt/redis-cluster/data"
+logfile "7000.log"
+dbfilename "dump-7000.rdb"
+cluster-enabled yes  #开启集群模式 
+cluster-config-file nodes-7000.conf　#集群内部的配置文件
+
+注意要自己建立/opt/redis-cluster/data这个文件目录
+2. 再配置5个相同的配置文件，redis支持多实例的功能，我们在单机演示集群搭建，需要6个实例，三个是主节点，三个是从节点，数量为6个节点才能保证高可用的集群
+>sed s/7000/7001/g redis-7000.conf > redis-7001.conf
+>sed s/7000/7002/g redis-7000.conf > redis-7002.conf
+>sed s/7000/7003/g redis-7000.conf > redis-7003.conf
+>sed s/7000/7004/g redis-7000.conf > redis-7004.conf
+>sed s/7000/7005/g redis-7000.conf > redis-7005.conf
+
+配置完成后可以查看下配置文件是否有误
+
+3. 运行redis实例
+>[root@localhost redis-4.0.10]# redis-server redis-7000.conf 
+>相继运行7001，7002，7003，7004，7005
+
+4. 查看端口，进程是否都开启
+>ps -ef|grep redis
+>netstat -tunlp|grep redis
+
+
+### 准备ruby环境
+1. 下载，解压
+>cd /opt
+>wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz
+>tar -xvf ruby-2.3.1.tar.gz
+
+2. 进入到解压文件，安装编译
+>./configure --prefix=/opt/ruby/
+>make && make install
+
+3. 配置ruby的环境变量
+>vim /etc/profile
+>在最后加上
+>PATH=$PATH:/opt/ruby/bin 
+
+4. 更新profile
+>source /etc/profile
+
+### 安装ruby gem 包管理工具
+>cd /opt
+>wget http://rubygems.org/downloads/redis-3.3.0.gem
+>gem install -l redis-3.3.0.gem
+
+查看gem有哪些包
+>gem list -- check redis gem
+
+安装redis-trib.rb命令
+>[root@localhost redis-4.0.10]#cp /opt/redis-4.0.10/src/redis-trib.rb /usr/local/bin/
+
+### 一键开启redis-cluster集群
+准备工作都做好啦，现在可以一键开启redis-cluster集群啦
+>redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005
+
+集群主节点状态
+>redis-cli -p 7000 cluster nodes | grep master
+
+集群从节点状态
+>redis-cli -p 7000 cluster nodes | grep slave
+
+查看某个端口状态
+>redis-cli -p 7000 cluster info replication
+
+
+测试写入集群数据,登录集群,必须加上-c参数
+>redis-cli -c -p 7000
