@@ -1,0 +1,30 @@
+只在第一次实例化对象时开辟一次对象的内存空间，以后所有由这个类实例化的对象都共用这个内存空间，并且后面的属性会覆盖之前的属性
+```python
+import threading
+from threading import RLock
+
+
+class Singleton(object):
+    __instance = None
+    rlock = RLock()
+
+    def __new__(cls, *args, **kwargs):
+        if cls.__instance:
+            return cls.__instance
+        with cls.rlock:
+            if not cls.__instance:
+                cls.__instance = object.__new__(cls)
+            return cls.__instance
+
+
+def task():
+    obj = Singleton()
+    print(obj)
+    return obj
+
+
+for i in range(10):
+    t = threading.Thread(target=task)
+    t.start()
+
+```
