@@ -1,0 +1,10 @@
+# 通过字符串名导入模块
+## from importlib import import_module
+
+summer = import_module("os")
+print(summer, type(summer))
+print(summer.path.basename(__file__))
+print(summer.name)
+print(summer.environ)
+
+import_module只是简单地执行和import相同的步骤，但是返回生成的模块对象你只需要将其存储在一个变量，然后像正常的模块一样使用。
