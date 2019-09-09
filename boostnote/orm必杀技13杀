@@ -1,0 +1,157 @@
+# orm必杀技13杀
+
+
+#### 返回QuerySet类型
+all():查询所有结果
+filter():它包含了与所给筛选条件相匹配的对象
+exclude():它包含了与所给筛选条件不匹配的对象
+
+order_by():对查询结果排序
+reverse():对查询结果反向排序，它通常只能在具有已定义顺序的QuerySet上调用(在model类的Meta中指定ordering或调用order_by()方法)。
+distinct():从返回结果中剔除重复纪录
+
+values():返回一个ValueQuerySet——一个特殊的QuerySet，运行后得到的并不是一系列model的实例化对象，而是一个可迭代的字典序列
+values_list(): 它与values()非常相似，它返回的是一个元组序列，values返回的是一个字典序列
+
+#### 返回对象
+get():返回与所给筛选条件相匹配的对象，返回结果有且只有一个，如果符合筛选条件的对象超过一个或者没有都会抛出错误。
+first():返回第一条记录
+last():返回最后一条记录
+
+#### 返回的是数字
+count():返回数据库中匹配查询(QuerySet)的对象数量。
+ 
+#### 返回布尔值
+exists():如果QuerySet包含数据，就返回True，否则返回False
+
+
+## 单表下的双下划线操作
+
+models.Tb1.objects.filter(id__lt=10, id__gt=1)  # 获取id大于1 且 小于10的值
+ 
+models.Tb1.objects.filter(id__in=[11, 22, 33])   # 获取id等于11、22、33的数据
+models.Tb1.objects.exclude(id__in=[11, 22, 33])  # not in
+ 
+models.Tb1.objects.filter(name__contains="ven")  # 获取name字段包含"ven"的
+models.Tb1.objects.filter(name__icontains="ven") # icontains大小写不敏感
+ 
+models.Tb1.objects.filter(id__range=[1, 3])      # id范围是1到3的，等价于SQL的bettwen and
+ 
+类似的还有：startswith，istartswith, endswith, iendswith　
+
+date字段还可以：
+models.Class.objects.filter(first_day__year=2017)
+
+
+
+```python
+# 出版社表
+class Publisher(models.Model):
+    name = models.CharField(max_length=64, verbose_name="出版社名称")
+    addr = models.CharField(max_length=128, verbose_name="地址")
+    create_time = models.DateField(max_length=64, auto_now_add=True, verbose_name="成立日期")
+    def __str__(self):
+        return self.name
+
+# 书籍表
+class Book(models.Model):
+    name = models.CharField(max_length=64, verbose_name="书籍名称")
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="书籍价格")
+    num = models.PositiveIntegerField(verbose_name="编号" ,unique=True)
+    publisher = models.ForeignKey(to="Publisher", verbose_name="外键关联Publisher", related_name="books", on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+
+# 作者表
+class Author(models.Model):
+    name = models.CharField(max_length=64, verbose_name="作者名")
+    birth = models.DateTimeField(verbose_name="生日")
+    sex = models.PositiveSmallIntegerField(choices=((1, "male"), (2, "female")), verbose_name="性别")
+    phone = models.BigIntegerField(verbose_name="手机号", unique=True)
+    email = models.EmailField(verbose_name="邮箱")
+    book = models.ManyToManyField(to="Book", verbose_name="多对多关联Book", related_name="authors",
+                                  through="Book_Author", through_fields=("author", "book")
+                                  )
+    def __str__(self):
+        return self.name
+
+class Book_Author(models.Model):
+    author = models.ForeignKey(to="Author")
+    book = models.ForeignKey(to="Book")
+    class Meta:
+        unique_together = (("author", "book"))
+```
+### Foreginkey操作
+##### 找到书籍id为1的出版社是哪个
+#### 正向查找
+>对象查找
+>
+book_obj = models.Book.objects.first()  # 第一本书对象
+book_obj.publisher.name
+
+>字段查找
+>
+obj = models.Book.objects.filter(id=1).values_list("publisher__name")
+#### 反向查找
+##### id为1的出版社出版的书的名字是什么
+>对象查找
+>
+obj = models.Publisher.objects.filter(id=1)[0]
+obj.book_set.all() #注意表中有related_name="books"
+obj = app04_models.Publisher.objects.filter(id=1)[0].books.all() #这中情况下这样写
+>字段查找
+>
+models.Publisher.objects.filter(id=1).values("books__name")
+
+### 将上一次执行的语句打印出sql语句的执行
+from django.db import connection
+print(connection.queries)
+
+
+### 查询
+###  基于对象的跨表查询(子查询)
+基于对象的一对一查询
+>正向查询--obj.外键
+  反向查询--obj.小写表明_set
+
+基于对象的一对多查询
+  >正向查询--obj.外键
+  反向查询--obj.小写表明_set.all()
+  
+基于对象的多对多查询
+  >正向查询--obj.外键.all()
+  反向查询--obj.小写表明_set.()
+
+###  基于双下划线的跨表查询(join查询)
+一对多查询
+![c0e8d353.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/c0e8d353.png)
+多对多查询
+![76dee2b4.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/76dee2b4.png)
+一对一查询
+![d74d81be.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/d74d81be.png)
+
+连续跨表
+![059e322a.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/059e322a.png)
+
+#### 聚合 aggregate
+![50d1e5ff.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/50d1e5ff.png)
+
+#### 分组查询 annotate
+单表分组查询
+![e99e002b.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/e99e002b.png)
+![a1ada41f.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/a1ada41f.png)
+
+多表分组查询
+![9597f966.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/9597f966.png)
+![c70cda08.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/c70cda08.png)
+![6cd5cad6.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/6cd5cad6.png)
+
+![29694cf3.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/29694cf3.png)
+
+![e346c86b.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/e346c86b.png)
+
+#### F查询与Q查询
+当比较同一行数据的不同字段时，用F包裹起来
+当查询一条语句需要多个字段同时查询时用Q包裹起来，|代表或，&代表与
+![22610fc5.png](:storage/4375c073-88fd-4ef0-85b3-abbfc9e0b4af/22610fc5.png)
+
