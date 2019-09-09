@@ -1,0 +1,27 @@
+Semaphore()
+信号量的实现机制
+>计数器加锁
+>允许一定数量的进程同时对同一块数据进行修改
+>信号量与进程池的区别在与信号量有加锁的机制
+```python
+import time
+
+from multiprocessing import Semaphore,Process
+
+def go_ktv(sem,user):
+    sem.acquire()
+    print("%s 进到一个包房" %user)
+    time.sleep(random.randint(0,3)) #模拟每个人在包房中带的时间不一样
+    sem.release()
+
+if __name__ == '__main__':
+    sem = Semaphore(4)
+    p_l = []
+    for i in range(20):
+        p = Process(target=go_ktv, args=(sem,"person%s" %i))
+        p.start()
+        p_l.append(p)
+    for p in p_l:
+        p.join()
+    print("主进程")
+```
