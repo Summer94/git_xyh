@@ -1,0 +1,66 @@
+### property与__setattr__\__setiterm__
+```python
+class Foo:
+    @property
+    def AAA(self):
+        print("get 的时候运行")
+
+    @AAA.setter
+    def AAA(self,value):
+        print("set 的时候运行")
+    @AAA.deleter
+    def AAA(self):
+        print("delet 的时候运行")
+
+a = Foo()
+a.AAA
+a.AAA = "summer"
+del a.AAA
+
+```
+```
+get 的时候运行
+set 的时候运行
+delet 的时候运行
+```
+```python
+class Bar():
+    def __getattr__(self, item):
+        print("get 不到的时候运行")
+
+    def __setattr__(self, key, value):
+        print("通过属性set的时候运行")
+
+    def __delattr__(self, item):
+        print("通过属性delete的时候运行")
+b = Bar()
+b.name
+b.name = "summer"
+del b.name
+
+```
+```
+get 不到的时候运行
+通过属性set的时候运行
+通过属性delete的时候运行
+```
+```python
+class F:
+    def __getitem__(self, item):
+        print("通过字符串get的时候运行")
+
+    def __setitem__(self, key, value):
+        print("通过字符串set的时候运行")
+
+    def __delitem__(self, key):
+        print("通过字符串删除的时候执行")
+c = F()
+c["name"]
+c["name"] = "summer"
+del c["name"]
+```
+```
+通过字符串get的时候运行
+通过字符串set的时候运行
+通过字符串删除的时候执行
+```
