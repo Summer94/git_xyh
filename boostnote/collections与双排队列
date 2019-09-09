@@ -1,0 +1,57 @@
+### day24 collections与双排队列
+
+collections模块
+>根据基础数据类型又做了一些扩展
+
+>有序字典
+python3.6以后字典都是有序的
+
+>Counter
+
+>默认字典
+```python
+from collections import defaultdict
+d = defaultdict(list)
+
+d = defaultdict(lambda :["defalut",])
+print(d["aaa"])
+
+########
+["defalut"]
+```
+
+>可命名元组
+非常类似一个只有属性没有方法的类，["year","month","day"]是对象的属性名，Struct_time就是类名，一旦定义了属性，就不能修改了
+```python
+from collections import defaultdict,namedtuple
+
+birth = namedtuple("Struct_time",["year","month","day"])
+b1 = birth(2018,10,10)
+print(b1)
+```
+
+>双端队列
+list的缺点双端队列可以弥补
+队列是什么？
+尽量少用list的insert
+![324b30a6.png](:storage/b714676b-c71d-4a19-b22a-15b1fd8e2de3/324b30a6.png)
+deque跟列表的存储方式不同，每个位置存储一个数，其中包含指向下一个数的内存地址，每append一个值，就在内存空间中随机开辟一个内存空间放这个值，上一个的值中的next就指向它，这样在添加或者删除的时候只是改变了next指向的数据，一般来说比list查找数据快1000倍，其他的操作方法都是一样的
+```python
+from collections import deque
+
+dq = deque()
+dq.append(1)
+dq.append(4)
+dq.append(7)
+dq.appendleft(10)
+dq.appendleft(11)
+dq.pop()
+dq.popleft()
+print(dq)  #deque([10, 1, 4])
+print(type(dq)) #<class 'collections.deque'>
+print(dq[1]) #1
+```
+
+
+Iterable
+Iterator
