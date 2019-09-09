@@ -1,0 +1,73 @@
+### 字典(dict)
+
+!!!error  注意:字典为可变数据类型，但是字典的键key为不可变数据类型，如数字，字符串，元组等；在对字典循环的时候注意不要对字典进行删除添加操作，会改变被循环的字典，最好是只循环，要操作的话可以新建字典
+!!!
+
+```python
+dic = {"name":"summer","age":24,"sex":"male"}
+
+增
+dic["class"] = "一班" #根据键添加，如果存在key，则会覆盖
+dic.setdefault("name","rain")  #存在key，既不会覆盖也不会添加
+dic.setdefault("price",100000)
+print(dic)
+d.update({"name":1})  #添加一个字典,有则覆盖，没有则添加
+
+删除
+res = dic.popitem()  #删除最后一个键值对，返回值为键、值的元组
+print(res)  # ('sex', 'male')
+res = dic.pop("name")  
+print(res,dic)  #根据键来删除，返回值为对应的值，如没有键则报错
+del dic["name"]
+del dic
+dic.clear()
+
+修改
+dic["name"] = "rain"
+d2 = {"name":"egon","weight":76}
+dic.update(d2) #key相同覆盖，不同则添加到dic中
+print(dic)
+
+查
+print(dic["name"])  #没有key报错
+print(dic.get("name"))  #找不到返回None
+
+for循环
+for k in dic:
+    print(k)
+
+for k,v in dic.items():
+    print(k,v)
+
+for i,k in enumerate(dic):
+    print(i,k)
+
+for v in dic.values():
+    print(v)
+
+l = list(dic.keys())
+l2 = list(dic.values())
+l3 = list(dic.items())
+print(l,l2,l3)
+["name", "age", "sex"]
+["summer", 24, "male"]
+[("name", "summer"), ("age", 24), ("sex", "male")]
+```
+>fromkeys() 
+>根据序列生成一个以序列元素为key，默认None为value的字典
+```python
+d = {"a":1,"b":2}
+dic = dict.fromkeys(d)
+print(dic)  
+{"a": None, "b": None}
+
+
+
+有对应的值，则直接覆盖
+d = {"a":1,"b":2}
+d1 = (110,20,30)
+dic = dict.fromkeys(d,d1)
+print(dic)
+{"a": (110, 20, 30), "b": (110, 20, 30)}
+```
+
