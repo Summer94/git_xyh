@@ -10,4 +10,13 @@ def foo():
     else:
         print(1111)
 
+class A:
+    def __init__(self, name):
+        self.name = name
+
+    def run(self):
+        print("{} is runing".format(self.name))
 foo()
+
+aa = A("summer")
+aa.run()
