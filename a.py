@@ -19,7 +19,19 @@ class A:
 
     def see(self):
         print("see something")
+
+
+class B:
+    def __init__(self, name):
+        self.name = name
+
+    def run(self):
+        print("{} is runing ojbk".format(self.name))
+
+    def see(self):
+        print("see something")
 foo()
 
 aa = A("summer")
 aa.run()
+
