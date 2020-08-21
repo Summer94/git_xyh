@@ -15,7 +15,10 @@ class A:
         self.name = name
 
     def run(self):
-        print("{} is runing".format(self.name))
+        print("{} is runing ojbk".format(self.name))
+
+    def see(self):
+        print("see something")
 foo()
 
 aa = A("summer")
