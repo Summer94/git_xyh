@@ -29,7 +29,8 @@ class B:
         print("{} is runing ojbk".format(self.name))
 
     def see(self):
-        print("see something")
+        print("see 1111111111")
+        print(222222)
 foo()
 
 aa = A("summer")
