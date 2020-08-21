@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f596f962-c8ad-44b6-99f1-2ccc55e33a99" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/a.py" beforeDir="false" afterPath="$PROJECT_DIR$/a.py" afterDir="false" />
-    </list>
+    <list default="true" id="f596f962-c8ad-44b6-99f1-2ccc55e33a99" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,14 +33,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="284" />
+          <entry key="py" value="313" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="12" />
-          <entry key="Python" value="284" />
+          <entry key="Python" value="313" />
         </counts>
       </usages-collector>
     </session>
@@ -61,11 +59,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/a.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-41">
-              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="207">
+              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
               <folding>
-                <marker date="1598015454000" expanded="true" signature="128:133" ph="..." />
-                <marker date="1598015454000" expanded="true" signature="203:573" ph="..." />
+                <marker date="1598015712000" expanded="true" signature="128:133" ph="..." />
+                <marker date="1598015712000" expanded="true" signature="203:573" ph="..." />
               </folding>
             </state>
           </provider>
@@ -282,11 +280,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/a.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        <state relative-caret-position="207">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
           <folding>
-            <marker date="1598015454000" expanded="true" signature="128:133" ph="..." />
-            <marker date="1598015454000" expanded="true" signature="203:573" ph="..." />
+            <marker date="1598015712000" expanded="true" signature="128:133" ph="..." />
+            <marker date="1598015712000" expanded="true" signature="203:573" ph="..." />
           </folding>
         </state>
       </provider>
